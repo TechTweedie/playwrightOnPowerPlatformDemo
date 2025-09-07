@@ -1,0 +1,47 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+- none
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- checkout: self
+
+- task: mightoria-playwrightForPowerPlatformAdvanced@1
+  inputs:
+    testLocation: '$(System.DefaultWorkingDirectory)/PlaywrightTests'
+    browser: 'chromium'
+    trace: 'on'
+    outputLocation: '$(System.DefaultWorkingDirectory)'
+    appUrl: 'https://techtweedie.crm11.dynamics.com/main.aspx?appid=6653f9fc-b74b-f011-877a-6045bd0e2fc6'
+    appName: 'MDA Playwright Testing'
+    o365Username: 'playwright-test@Tweed.technology'
+    o365Password: '$(o365Password)'
+    tenantId: '63759d9f-bfca-4f52-ae98-8f2f1d7bc173'
+    dynamicsUrl: 'techtweedie.crm11.dynamics.com'
+    clientId: '6f3163d1-bd41-4f0e-8725-980f05d2a82f'
+    clientSecret: '$(ClientSecret)'
+    userRole: 'System Administrator'
+    team: 'orgbfc42920'
+    businessUnit: 'orgbfc42920'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/playwright-report'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(System.DefaultWorkingDirectory)/playwright-report/playwright-report.zip'
+    replaceExistingArchive: true
+
+
+- publish: $(System.DefaultWorkingDirectory)/playwright-report/
+  artifact: playwright-report
+  # always create the artifact, this is useful for debugging failed tests
+  condition: always()
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
