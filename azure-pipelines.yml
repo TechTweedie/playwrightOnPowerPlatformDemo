@@ -21,7 +21,7 @@ steps:
     o365Password: '$(o365Password)'
     tenantId: '63759d9f-bfca-4f52-ae98-8f2f1d7bc173'
     dynamicsUrl: 'techtweedie.crm11.dynamics.com'
-    clientId: 'db808651-052b-4fc1-83da-ac5149066043'
+    clientId: '6f3163d1-bd41-4f0e-8725-980f05d2a82f'
     clientSecret: '$(ClientSecret)'
     userRole: 'System Administrator'
     team: 'orgbfc42920'
