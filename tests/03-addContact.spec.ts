@@ -18,48 +18,42 @@ let fakeData: { firstName: string; lastName: string; email: string };
 test('add-contact', async ({ page }) => {
   // Dynamically import node-fetch for ESM compatibility
   const fetch = (await import('node-fetch')).default;
+
+  // Edit the API URL and parameters as needed
   const response = await fetch('https://fakerapi.it/api/v2/custom?_quantity=1&FirstName=firstName&LastName=lastName&Email=email');
+  
+  // Edit the parsing logic based on the actual API response structure
   const result = (await response.json()) as { data: Array<{ FirstName: string; LastName: string; Email: string }> };
   const user = result.data[0];
+
+  // Edit the fake data structure based on the API response
   fakeData = {
     firstName: user.FirstName,
     lastName: user.LastName,
     email: user.Email,
   };
 
+  // Example use of Fake Data
+  //  await page.getByRole('textbox', { name: 'First Name' }).fill(fakeData.firstName);
+
+
   // Navigate to the application URL
   await page.goto(config.appUrl); 
-  
-  // Look for the contacts section regardless of app title
-  console.log('Looking for contacts section...');
 
-  // Wait for the Contacts section to be available before interacting
-  await page.getByText('AddSpecificResource_16Contacts').waitFor({ timeout: 15000 });
+  // Start of test
+
   await page.getByText('AddSpecificResource_16Contacts').click();
-  
-  // Wait for the New menu item to be available before clicking
-  await page.getByRole('menuitem', { name: 'New', exact: true }).waitFor({ timeout: 10000 });
   await page.getByRole('menuitem', { name: 'New', exact: true }).click();
-  
-  // Wait for form fields to be available before interacting
-  await page.getByRole('textbox', { name: 'First Name' }).waitFor({ timeout: 10000 });
   await page.getByRole('textbox', { name: 'First Name' }).click();
   await page.getByRole('textbox', { name: 'First Name' }).fill(fakeData.firstName);
-  await page.getByRole('textbox', { name: 'First Name' }).press('Tab');
-  
-  // Wait for Last Name field and fill it
-  await page.getByRole('textbox', { name: 'Last Name' }).waitFor({ timeout: 5000 });
+  await page.locator('[id="id-1fed44d1-ae68-4a41-bd2b-f13acac4acfa-3-fullname_compositionLinkControl_lastname4273edbd-ac1d-40d3-9fb2-095c621b552d-fullname_compositionLinkControl_lastname.fieldControl-pcf-container-id"] span').click();
   await page.getByRole('textbox', { name: 'Last Name' }).fill(fakeData.lastName);
-  
-  // Wait for Email field and fill it
-  await page.getByRole('textbox', { name: 'Email', exact: true }).waitFor({ timeout: 5000 });
   await page.getByRole('textbox', { name: 'Email', exact: true }).click();
   await page.getByRole('textbox', { name: 'Email', exact: true }).fill(fakeData.email);
-  
-  // Wait for Save & Close button and click it
-  await page.getByRole('menuitem', { name: 'Save & Close' }).waitFor({ timeout: 10000 });
   await page.getByRole('menuitem', { name: 'Save & Close' }).click();
-  
+
+  // End of test
+
   // Optional: Wait for save confirmation or navigation away from form
-  await page.waitForTimeout(2000); // Give time for save operation to complete
+  await page.waitForTimeout(10000); // Give time for save operation to complete
 });
