@@ -11,7 +11,7 @@ steps:
 
 - task: mightoria-playwrightForPowerPlatform@1
   inputs:
-    testLocation: '$(System.DefaultWorkingDirectory)/PlaywrightTests'
+    testLocation: '$(System.DefaultWorkingDirectory)/tests'
     browser: 'chromium'
     trace: 'off'
     outputLocation: '$(System.DefaultWorkingDirectory)'
