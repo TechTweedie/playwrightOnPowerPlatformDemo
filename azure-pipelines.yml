@@ -12,6 +12,7 @@ steps:
 - task: mightoria-playwrightForPowerPlatform@1
   inputs:
     testLocation: '$(System.DefaultWorkingDirectory)/tests'
+    playwrightBranch: 'update/250919'
     browser: 'chromium'
     trace: 'off'
     outputLocation: '$(System.DefaultWorkingDirectory)'
@@ -23,6 +24,7 @@ steps:
 - task: mightoria-playwrightForPowerPlatformAdvanced@1
   inputs:
     testLocation: '$(System.DefaultWorkingDirectory)/tests'
+    playwrightBranch: 'update/250919'
     browser: 'chromium'
     trace: 'on'
     outputLocation: '$(System.DefaultWorkingDirectory)'
