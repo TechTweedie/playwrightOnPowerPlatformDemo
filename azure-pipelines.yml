@@ -9,6 +9,17 @@ pool:
 steps:
 - checkout: self
 
+- task: mightoria-playwrightForPowerPlatform@1
+  inputs:
+    testLocation: '$(System.DefaultWorkingDirectory)/PlaywrightTests'
+    browser: 'chromium'
+    trace: 'off'
+    outputLocation: '$(System.DefaultWorkingDirectory)'
+    appUrl: 'https://techtweedie.crm11.dynamics.com/main.aspx?appid=6653f9fc-b74b-f011-877a-6045bd0e2fc6'
+    appName: 'MDA Playwright Testing'
+    o365Username: 'playwright-test@Tweed.technology'
+    o365Password: '$(o365Password)'
+
 - task: mightoria-playwrightForPowerPlatformAdvanced@1
   inputs:
     testLocation: '$(System.DefaultWorkingDirectory)/tests'
