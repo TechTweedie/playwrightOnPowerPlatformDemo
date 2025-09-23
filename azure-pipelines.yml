@@ -9,36 +9,36 @@ pool:
 steps:
 - checkout: self
 
-- task: mightoria-playwrightForPowerPlatform@1
-  inputs:
-    testLocation: '$(System.DefaultWorkingDirectory)/tests'
-    playwrightBranch: 'update/250919'
-    browser: 'chromium'
-    trace: 'off'
-    outputLocation: '$(System.DefaultWorkingDirectory)'
-    appUrl: 'https://techtweedie.crm11.dynamics.com/main.aspx?appid=6653f9fc-b74b-f011-877a-6045bd0e2fc6'
-    appName: 'MDA Playwright Testing'
-    o365Username: 'playwright-test@Tweed.technology'
-    o365Password: '$(o365Password)'
-
-#- task: mightoria-playwrightForPowerPlatformAdvanced@1
+#- task: mightoria-playwrightForPowerPlatform@1
 #  inputs:
 #    testLocation: '$(System.DefaultWorkingDirectory)/tests'
 #    playwrightBranch: 'update/250919'
 #    browser: 'chromium'
-#    trace: 'on'
+#    trace: 'off'
 #    outputLocation: '$(System.DefaultWorkingDirectory)'
 #    appUrl: 'https://techtweedie.crm11.dynamics.com/main.aspx?appid=6653f9fc-b74b-f011-877a-6045bd0e2fc6'
 #    appName: 'MDA Playwright Testing'
 #    o365Username: 'playwright-test@Tweed.technology'
 #    o365Password: '$(o365Password)'
-#    tenantId: '63759d9f-bfca-4f52-ae98-8f2f1d7bc173'
-#    dynamicsUrl: 'techtweedie.crm11.dynamics.com'
-#    clientId: '6f3163d1-bd41-4f0e-8725-980f05d2a82f'
-#    clientSecret: '$(ClientSecret)'
-#    userRole: 'System Administrator'
-#    team: 'orgbfc42920'
-#    businessUnit: 'orgbfc42920'
+
+- task: mightoria-playwrightForPowerPlatformAdvanced@1
+  inputs:
+    testLocation: '$(System.DefaultWorkingDirectory)/tests'
+    playwrightBranch: 'update/250919'
+    browser: 'chromium'
+    trace: 'on'
+    outputLocation: '$(System.DefaultWorkingDirectory)'
+    appUrl: 'https://techtweedie.crm11.dynamics.com/main.aspx?appid=6653f9fc-b74b-f011-877a-6045bd0e2fc6'
+    appName: 'MDA Playwright Testing'
+    o365Username: 'playwright-test@Tweed.technology'
+    o365Password: '$(o365Password)'
+    tenantId: '63759d9f-bfca-4f52-ae98-8f2f1d7bc173'
+    dynamicsUrl: 'techtweedie.crm11.dynamics.com'
+    clientId: '6f3163d1-bd41-4f0e-8725-980f05d2a82f'
+    clientSecret: '$(ClientSecret)'
+    userRole: 'System Administrator'
+    team: 'orgbfc42920'
+    businessUnit: 'orgbfc42920'
 
 - task: ArchiveFiles@2
   inputs:
