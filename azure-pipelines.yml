@@ -9,6 +9,11 @@ pool:
 steps:
 - checkout: self
 
+- task: NodeTool@0
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '20.19.5'
+
 - task: mightoria-playwrightForPowerPlatform@1
   inputs:
     testLocation: '$(System.DefaultWorkingDirectory)/tests'
