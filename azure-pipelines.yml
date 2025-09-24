@@ -12,9 +12,8 @@ steps:
 - task: mightoria-playwrightForPowerPlatform@1
   inputs:
     testLocation: '$(System.DefaultWorkingDirectory)/tests'
-#    playwrightBranch: 'update/250919'
     browser: 'chromium'
-    trace: 'off'
+    trace: 'on'
     outputLocation: '$(System.DefaultWorkingDirectory)'
     appUrl: 'https://techtweedie.crm11.dynamics.com/main.aspx?appid=6653f9fc-b74b-f011-877a-6045bd0e2fc6'
     appName: 'MDA Playwright Testing'
