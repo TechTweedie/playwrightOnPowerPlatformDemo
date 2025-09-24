@@ -12,7 +12,7 @@ steps:
 - task: mightoria-playwrightForPowerPlatform@1
   inputs:
     testLocation: '$(System.DefaultWorkingDirectory)/tests'
-    playwrightBranch: 'update/250919'
+#    playwrightBranch: 'update/250919'
     browser: 'chromium'
     trace: 'off'
     outputLocation: '$(System.DefaultWorkingDirectory)'
@@ -50,7 +50,7 @@ steps:
 
 
 - publish: $(System.DefaultWorkingDirectory)/playwright-report/
-  artifact: playwright-report
+  artifact: playwright-report-$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
   # always create the artifact, this is useful for debugging failed tests
   condition: always()
 
