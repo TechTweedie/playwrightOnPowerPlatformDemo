@@ -50,7 +50,7 @@ steps:
 
 
 - publish: $(System.DefaultWorkingDirectory)/playwright-report/
-  artifact: playwright-report-$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+  artifact: playwright-report
   # always create the artifact, this is useful for debugging failed tests
   condition: always()
 
