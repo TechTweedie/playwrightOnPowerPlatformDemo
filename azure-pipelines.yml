@@ -9,7 +9,7 @@ pool:
 steps:
 - checkout: self
 
-- task: mightoria-playwrightForPowerPlatform@0
+- task: mightoria-playwrightForPowerPlatform@1
   inputs:
     testLocation: '$(System.DefaultWorkingDirectory)/tests'
     browser: 'chromium'
@@ -20,7 +20,7 @@ steps:
     o365Username: 'playwright-test@Tweed.technology'
     o365Password: '$(o365Password)'
 
-- task: mightoria-playwrightForPowerPlatformAdvanced@0
+- task: mightoria-playwrightForPowerPlatformAdvanced@1
   inputs:
     testLocation: '$(System.DefaultWorkingDirectory)/tests'
 #    playwrightBranch: 'update/250919'
